@@ -1,0 +1,66 @@
+<head><link href="karakter.css" rel ="stylesheet" type = "text/css"><title>THE HOME PAGE</title> <link rel="icon" type="image/x-icon" href="favicon.ico"></head>
+<!-- De to øverste linjene er for å koble sammen css siden til html siden og også lage en overskrift og tegn til taben--> 
+<body id="bod">
+
+<section>
+<!--Denne seksjonen er for å lage den øverste baren. Jeg lager en liste som jeg da kan formateres til å gå sidelengs. I den så er det lenker koblet for å sende dem til de ulike sidene. Jeg bruker p1 tags fo å sette dem inn på riktig størelse-->
+
+<ul >
+<li><a href="denekteskoleoppgaven.html"><p1>PROJECTSAVER</p1></a></li>
+<li><a href="homepage.html"><p1>TIMER</p1></a></li>
+<li><a href="karakter.html"><p1>GRADE CALCULATOR</p1></a></li></ul>
+</section>
+<h1 class="h">Grade calculator</h1>
+
+<section class="main">
+<!-- Her lager jeg to inputs med labels for å få inn informasjon fra brukeren. Jeg har brukt mange divs, og de er brukt til å lage css. Jeg har også
+en knapp som kobles til javascript. Dette forklarer jeg senere. Jeg lager noen outputs, som også kan kobles til javascript.   --> 
+    <br><br><br>
+<div class="inputs">
+    <div class=" input">
+        <label >Subject: </label>
+        <input id="inpt">
+    </div>
+    <br>
+    <div class=" input">
+        <label >Grade: </label>
+        <input id="inpt1">
+        
+    </div>
+</div> 
+
+<br>
+    <button  onclick="start()">Add</button>
+        <br>
+        <div class="average">
+        <p id="average" class="a">Average: </p>
+    </div>
+        <br>
+        <p id="list" class="out"></p>
+    </div>
+</section>
+<script>
+    //jeg lager to variabler på starten. Etter at knappen blir trykket vil den hente inn alle outputs og inputs for å lagre eller endre på de
+    //deretter lager jeg en ny p tag gjennom javascript og så aderer det den skal inneholde. I denne koden skal det være inputene. Så lagrer jeg adisjonen av tallene og antall tall for å deretter finne gjennomsnittet. 
+    // så er det bare å vise alt igjen!
+    let v = 0
+    let old = 0
+    function start(){
+        let average = document.querySelector("#average");
+        let inpt = document.querySelector('#inpt');
+        let inpt1 = document.querySelector('#inpt1');
+        let list = document.querySelector('#list');
+        let i = document.createElement("p");
+        i.textContent = inpt.value +" :"+ inpt1.value;
+        list.appendChild(i);
+        
+        console.log(old)
+        old= old + Number(inpt1.value);
+        console.log(old)
+        
+        v++;
+        average.innerHTML = "Average: " + String(old/v) 
+        inpt.value="";
+        inpt1.value="";
+    }
+</script>

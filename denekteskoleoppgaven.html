@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head><link href="skoleprosjekt.css" rel ="stylesheet" type = "text/css"><title>THE PROJECT SAVER</title> <link rel="icon" type="image/x-icon" href="favicon.ico"></head>
+<body class="body" id="bod">
+
+
+<ul>
+<li><a href="denekteskoleoppgaven.html"><p1 class="headtexts" id="plan3">PROJECTSAVER</p1></a></li>
+<li><a href ="homepage.html"><p1 class="headtexts" id="plan2">TIMER</p1></a><li><a href="karakter.html"><p1>GRADE CALCULATOR</p1></a></li></li>
+</ul>
+
+<br><br>
+<!-- Her lager jeg titelen og aderer plass nedover.-->
+<h1 class="headtexts" id="plan">PROJECTSAVER</h1>
+<br><br><br><br><br><br><br>
+
+
+<!--Her er selve panelen, son inneholder inputet og andre funksjoner som den bruker-->
+<section class="panel">
+<label class = "headtexts" id = "labels">Projects name:</label>
+<input id="projects">
+<button type="button" id="btn1" onclick="myFunc()" style="width: 5rem;">Add to list</button>
+</section>
+
+
+
+<!--Her ligger alle titlene til alle listene som jeg bruker. De ser feil plasert, men de er lagt sånn fordi jeg kan endre på cssen senere -->
+<br><br><br><br><br>
+<diV class="division1">
+<p class="notstarted listhead"> To do:</p>
+
+
+<p class="inp listhead"> Ongoing:</p>
+
+
+<p class="finished listhead">Complete:</p>
+
+
+</diV>
+<!-- Her ligger listene som jeg setter ting inne i gjennom. -->
+<div class ="division">
+<p id="list1" class="notstarted lists">  </p>
+<p id="list2" class="inp lists">  </p>
+<p id="list3" class="finished lists">  </p>
+</div>
+
+<script>
+    
+   // Jeg starter en funksjon når knappen er trykket.
+    function myFunc() {
+        //Her henter jeg inn alle variablene jeg trenger. Jeg lager en ny element som er en knapp, og gir den verdien som brukeren har satt.
+        let projects = document.querySelector("#projects");
+        
+        let list1 = document.querySelector("#list1");
+        let list2 = document.querySelector("#list2");
+        let list3 = document.querySelector("#list3");
+        let finished= document.createElement('Button');
+        let variable = 0
+        
+        finished.textContent = projects.value;
+        projects.value =""
+        localStorage.setItem(list1,finished.textcontent)
+        // Her lager jeg koden som kjekker hvis knappen er trykket. 
+        finished.addEventListener('click', function(e){
+            variable = variable + 1
+            if (variable ==0 ){
+            finished.className = "button1"
+            list1.appendChild(finished);
+            
+            //Jeg bruker en variabel til å huske hvor langt man har kommet og setter den nye knappen inn i listen. 
+        }
+        else if (variable ==1 ){
+            finished.className = "button2"
+            list2.appendChild(finished);
+            
+
+
+        } 
+        else if (variable ==2 ){
+            finished.className = "button3"
+            list3.appendChild(finished);
+            
+
+        }
+        else {console.log(variable);
+            list3.removeChild(finished);}
+
+        });
+         //her er den samme koden, men det er for å sette inn knappen inn i listen hvis du ikke trykker i knappen..
+
+        if (variable ==0 ){
+            
+            list1.appendChild(finished);
+            finished.className = "button1"
+            console.log(variable);
+
+        }
+        else if (variable ==1 ){
+            
+            list2.appendChild(finished);
+            finished.className = "button2"
+            console.log(variable);
+
+
+        } 
+        else if (variable ==2 ){
+            
+            list3.appendChild(finished);
+            finished.className = "button3"
+            console.log(variable);
+
+
+        }else{
+            list3.removeChild(finished);
+    
+
+        }
+
+
+    }
+   
+    
+</script>
+
+</body>
+</html>

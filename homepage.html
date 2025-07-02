@@ -1,0 +1,131 @@
+<head><link href="homepage.css" rel ="stylesheet" type = "text/css"><title>THE HOME PAGE</title> <link rel="icon" type="image/x-icon" href="favicon.ico"></head>
+<body id="bod" class="body">
+
+<section>
+
+<ul id="plan">
+<li><a href="denekteskoleoppgaven.html"><p1>PROJECTSAVER</p1></a></li>
+<li><a href="homepage.html"><p1>TIMER</p1></a></li><li><a href="karakter.html"><p1>GRADE CALCULATOR</p1></a></li></ul>
+</section>
+<!--Under her er alt koden til timeren-->
+<section class="Timers">
+<h3> Pomodoro timer</h3>
+<!--Jeg lager en div som en panel fordi den kan jeg formere gjennom cssen. Inne i den har jeg de to modusene, Jobbe og Pause, med Css til å endre hva som skal være på-->
+<br>
+<div class="panel">
+        <p id="work" class="active">WORK</p>
+        <p id="break">BREAK</p>
+</div>
+<!--Under her lager jeg cirkelen og det som viser tiden-->
+<div class="time">
+                <p class="l"></p>
+                <p  id="min"></p>
+                <p>:</p>
+                <p  id="sec"></p>
+                <p class="l"></p>
+</div>
+<!--Jeg bruker classen under til å lage knappene som skal se antall syklusser-->
+<div class="cycle">
+<button onclick="inc()" id="inc" class="start">⇧</button>
+<p id="c">Cycles: </p>
+<button onclick="red()" id="red" class="start">⇩</button>
+</div>
+<div class="controls">
+        <button id="start" onclick="start()">PLAY</button>
+</div>
+
+
+</section>
+<script>
+    //Jeg henter inn alle variablene som jeg bruker og linker dem til htmlen.
+    let workTime = 25;
+    let breakTime = 5;
+    let workTitle = document.getElementById('work');
+    let breakTitle = document.getElementById('break');
+    
+    
+   
+    //Antall sekunder og antall minutter er definneret her, og dette skjer på starten, når du går inn på siden.
+    let seconds ="00"
+    let cycles= 1
+    window.onload = () => {
+    document.getElementById('min').innerHTML = workTime;
+    document.getElementById('sec').innerHTML = '00';
+
+    workTitle.classList.add('active');
+    //Som snakket om, når vi starter koden vil du jobbe, og derfor skal den vises som aktiv
+    }
+    //Her er funksjonene for å gjøre syklusene større og mindre
+    function inc(){
+        cycles++;
+        document.getElementById('c').innerHTML = 'Cycles: '+cycles;
+    }
+
+    function red(){
+        if (cycles === 0){
+            document.getElementById('c').innerHTML = 'Cycles: '+cycles;
+        }
+        else{
+            cycles--;
+        document.getElementById('c').innerHTML = 'Cycles: '+cycles;
+    }}
+    //Her er variablen til syklusen.
+    document.getElementById('c').innerHTML = 'Cycles: '+cycles;
+    function start(){
+        //Jeg lager en funksjon som vil runnes hver gang du trykker knapen og funksjonen er ferdig.
+        seconds = 59;
+        let workmin = workTime - 1;
+        let breakmin = breakTime - 1;
+
+        breakcount =0;
+        document.getElementById('inc').disabled=true;
+        document.getElementById('red').disabled=true;
+        document.getElementById('start').disabled=true;
+        //Jeg lager en funksjon som vil runnes hvert sekund.
+
+        let timerfunc = () => {
+
+            document.getElementById('min').innerHTML = workmin;
+            document.getElementById('sec').innerHTML = seconds;
+            document.getElementById('c').innerHTML = 'Cycles: '+cycles;
+            //Hver sekund minuser jeg 1 fra antall sekunder.
+
+            seconds = seconds -1;
+
+             if(seconds === 0){
+             workmin= workmin -1;
+             //Hvis sekundene er 0, minuser vi 1 fra minnuter.
+             if(workmin === -1){
+                if (cycles===0) {document.getElementById('inc').disabled=false;
+                document.getElementById('red').disabled=false;
+                 document.getElementById('start').disabled=false;
+                 document.getElementById('c').innerHTML = 'Cycles completed';
+                 clearInterval(i);}
+                 //stoppe timer hvis ferdig.
+                if(breakcount%2===0){
+
+                    workmin = breakmin;
+                    breakcount ++;
+                    breakTitle.classList.add('active');
+                    workTitle.classList.remove('active')
+                    //Hvis du skal jobbe, vil breakount ikke være divisibel med to. Dermed skal du jobbe, ellers ta pause.
+                }else{
+                    workmin = workTime;
+                    breakcount++;
+                    breakTitle.classList.remove('active');            
+                    workTitle.classList.add('active');
+                    cycles --;
+                }
+             }
+             seconds = 59;
+             //her vil vi resete sekundene.
+
+             }
+        }
+        var i = setInterval(timerfunc,1000);
+        //Jeg gjør at funksjonen runner hver sekund.
+    }
+
+</script>
+
+</body>

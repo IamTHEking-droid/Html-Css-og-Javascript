@@ -1,0 +1,74 @@
+/*Classen under gjør at alt som er under body tags vil ha bakgrunn aquamarine og ha text type "Open sans",sans-serif */
+body {
+  background-color: aquamarine;
+  font-family: "Open sans",sans-serif;
+}
+/*Koden under handler om baren som er øverst.*/
+/*Dette gjør at alt som er en liste vil ikke ha noen punkter, vil ikke bli justeret, og vil ha bakgrunnsfarge og ha border */
+ul {
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  border: 3px solid #fff;
+}
+/*alt som er under en li tag, eller en del av en liste vil flyttes lengst til venstre og ha kantene rød*/
+li {
+  float: left;
+  border-left: 1px solid #e90000;
+  border-right: 1px solid #e90000;
+}
+/*Alt som er en li og er en a innen en li vil ha stilen av en blokk. Fargen til teksten */
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+/* Coden under gjør at når knappen øverst blir hoveret på vil backgrunnsfargen bli sort*/
+li a:hover {
+  background-color: #111;
+}
+/* Koden under gjør at teksten vil gå til midten*/
+.h{
+  text-align: center;
+}
+/* Koden under gjør at alle delene av divene som har inputene vil ha alt på en rad og får tekstene til å være i midten. Den gir
+en border og definerer en lengde*/
+.input {
+
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: row;
+  
+  width:250px;
+  border: 3px solid #fff;
+
+}
+/* Koden under gjør at teksten som viser gjennomsnittet vil være gul, være en "extended sirkel". */
+.average {
+  display: flex;
+  flex-direction: row;
+  background-color: #daca7c;
+  border-radius: 3rem;
+  height: 50px;
+  width: 15rem;
+
+}
+
+/* Koden under gjør at alt som er under main classen vil stå i en column og ha texten i  midten */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.a {
+  margin-left: 5rem;
+}
+
